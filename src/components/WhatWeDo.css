@@ -1,0 +1,69 @@
+/* ═══════════════════════════════════════════════════════════════
+   What We Do — Horizontal Scroll Section
+   ═══════════════════════════════════════════════════════════════ */
+
+.wwd-scroll {
+  height: 500vh;
+  position: relative;
+}
+
+.wwd-track {
+  display: flex;
+  list-style: none;
+  position: sticky;
+  top: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.wwd-slide {
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Giant word — the star of the show */
+.wwd-slide-word {
+  font-size: clamp(3rem, 9vw, 10rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  user-select: none;
+  padding: 0 24px;
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .wwd-scroll {
+    height: 400vh;
+  }
+
+  .wwd-slide-word {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    letter-spacing: -1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wwd-scroll {
+    height: 350vh;
+  }
+
+  .wwd-slide-word {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    letter-spacing: 0;
+    padding: 0 16px;
+  }
+}

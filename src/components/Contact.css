@@ -1,0 +1,130 @@
+.contact {
+  padding: 100px 80px;
+  background: var(--off-white);
+}
+
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.contact-left {
+  flex: 1;
+}
+
+.contact-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-top: 16px;
+  color: var(--dark);
+}
+
+.contact-desc {
+  margin-top: 20px;
+  color: var(--text-light);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.contact-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #eee;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  background: var(--white);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.1);
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-submit {
+  background: var(--orange);
+  color: white;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: var(--transition);
+  align-self: flex-start;
+}
+
+.contact-submit:hover {
+  background: var(--orange-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(230, 57, 70, 0.3);
+}
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 60px 20px;
+  }
+  .contact-inner {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+  .contact-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    padding: 48px 16px;
+  }
+
+  .contact-inner {
+    gap: 32px;
+  }
+
+  .contact-title {
+    font-size: 1.5rem;
+  }
+
+  .contact-desc {
+    font-size: 0.95rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 14px 16px;
+    font-size: 0.9rem;
+  }
+
+  .contact-submit {
+    align-self: stretch;
+    text-align: center;
+    padding: 14px 32px;
+    font-size: 0.95rem;
+  }
+}

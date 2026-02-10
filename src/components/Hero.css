@@ -1,0 +1,299 @@
+/* ═══════════════════════════════════════════════════════════════
+   Hero — Sticky stacking scroll sections
+   ═══════════════════════════════════════════════════════════════ */
+
+.hero-wrapper {
+  background: var(--white);
+}
+
+/* ── Shared slide ── */
+.hero-slide {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  overflow: hidden;
+}
+
+.hero-slide--white {
+  background: var(--white);
+  color: var(--dark);
+}
+
+.hero-slide--red {
+  background: var(--orange);
+  color: var(--white);
+}
+
+.hero-slide--rounded {
+  border-radius: 24px 24px 0 0;
+}
+
+/* Slide content */
+.hero-slide-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 32px;
+}
+
+/* ── Section 1: giant brand title ── */
+.hero-brand-title {
+  font-size: clamp(7rem, 18vw, 16rem);
+  font-weight: 800;
+  letter-spacing: -6px;
+  line-height: 1;
+  color: var(--dark);
+}
+
+/* ── Shared headings for slide 2–3 ── */
+.hero-slide-heading {
+  font-size: clamp(2.4rem, 6vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -2px;
+}
+
+.hero-slide-heading--large {
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
+}
+
+.hero-slide-heading--red {
+  color: var(--orange);
+}
+
+.hero-slide-heading--right {
+  text-align: right;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Section 4: Stack — stacking images + sticky text + color cascade
+   ═══════════════════════════════════════════════════════════════ */
+.hero-stack {
+  position: relative;
+  width: 100%;
+  transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-stack--white {
+  background: var(--white);
+  color: var(--dark);
+}
+
+.hero-stack--red {
+  background: var(--orange);
+  color: var(--white);
+}
+
+.hero-stack-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 60px;
+}
+
+.hero-stack-images {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-stack-fig {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+.hero-stack-fig img {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-stack-fig--active img {
+  transform: scale(1.02);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.3);
+}
+
+.hero-stack-fig:hover img {
+  transform: scale(1.04);
+}
+
+.hero-stack-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  gap: 40px;
+}
+
+/* Heading — large Playfair Display */
+.hero-stack-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -3px;
+  text-align: right;
+  color: var(--dark);
+  transition: color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: headingFadeIn 0.45s ease both;
+}
+
+@keyframes headingFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-stack-heading--light {
+  color: var(--white);
+}
+
+/* Haiku third line — the closing turn */
+.hero-stack-heading-last {
+  display: block;
+  font-style: italic;
+  font-size: 0.75em;
+  letter-spacing: 0;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+/* Dot indicators */
+.hero-stack-dots {
+  display: flex;
+  gap: 10px;
+}
+
+.hero-stack-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d4d4d4;
+  transition: var(--transition);
+}
+
+.hero-stack-dot.active {
+  background: var(--orange);
+  transform: scale(1.5);
+  box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.25);
+}
+
+.hero-stack-dot.done {
+  background: var(--orange);
+}
+
+.hero-stack-dot--light {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.hero-stack-dot--light.active {
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+}
+
+.hero-stack-dot--light.done {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 968px) {
+  .hero-brand-title {
+    font-size: clamp(4rem, 20vw, 8rem);
+    letter-spacing: -3px;
+  }
+
+  .hero-slide-heading {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .hero-slide-heading--large {
+    font-size: clamp(2.2rem, 7vw, 3.5rem);
+  }
+
+  .hero-stack-grid {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+  }
+
+  .hero-stack-sticky {
+    position: relative;
+    height: auto;
+    padding: 80px 0 24px;
+    order: -1;
+  }
+
+  .hero-stack-heading {
+    text-align: center;
+    font-size: clamp(2.4rem, 8vw, 3.5rem);
+    letter-spacing: -1px;
+  }
+
+  .hero-stack-fig img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero-stack-dots {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-brand-title {
+    font-size: clamp(3rem, 18vw, 5rem);
+    letter-spacing: -2px;
+  }
+
+  .hero-slide-content {
+    padding: 0 16px;
+  }
+
+  .hero-slide-heading {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    letter-spacing: -1px;
+  }
+
+  .hero-slide-heading--large {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+
+  .hero-stack-grid {
+    padding: 0 16px;
+  }
+
+  .hero-stack-sticky {
+    padding: 60px 0 16px;
+    gap: 24px;
+  }
+
+  .hero-stack-heading {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+    letter-spacing: -0.5px;
+  }
+
+  .hero-stack-fig img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    aspect-ratio: 1;
+  }
+}

@@ -1,0 +1,218 @@
+.process {
+  position: relative;
+  height: 350vh;
+  background: var(--white);
+}
+
+.process-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  z-index: 2;
+}
+
+.process-content {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding: 0 80px;
+}
+
+.process-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.process-number-large {
+  font-size: clamp(6rem, 12vw, 10rem);
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1;
+  letter-spacing: -4px;
+  position: relative;
+  animation: numberPop 0.3s ease;
+}
+
+@keyframes numberPop {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.process-number-large::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60%;
+  height: 4px;
+  background: var(--orange);
+  border-radius: 2px;
+}
+
+.process-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  transition: var(--transition);
+}
+
+.progress-dot.active {
+  background: var(--orange);
+  transform: scale(1.4);
+  box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.2);
+}
+
+.progress-dot.done {
+  background: var(--orange);
+}
+
+.process-right-col {
+  flex: 1;
+}
+
+.process-right-col .section-tag {
+  margin-bottom: 8px;
+  display: block;
+}
+
+.process-phase-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-top: 12px;
+  margin-bottom: 32px;
+}
+
+.process-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.process-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 1.1rem;
+  color: var(--text);
+  animation: fadeInRight 0.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.process-bullet {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+.process-counter {
+  margin-top: 48px;
+  font-size: 1rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.process-counter .current {
+  color: var(--orange);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.process-counter .separator {
+  margin: 0 6px;
+  color: #ddd;
+}
+
+.process-counter .total {
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .process {
+    height: 300vh;
+  }
+  .process-content {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 30px;
+    text-align: center;
+  }
+  .process-left-col {
+    flex-direction: row;
+  }
+  .process-progress {
+    flex-direction: row;
+  }
+  .process-number-large {
+    font-size: 5rem;
+  }
+  .process-number-large::after {
+    display: none;
+  }
+  .process-phase-title {
+    font-size: 1.6rem;
+  }
+  .process-item {
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .process {
+    height: 280vh;
+  }
+
+  .process-content {
+    padding: 0 16px;
+    gap: 20px;
+  }
+
+  .process-number-large {
+    font-size: 3.5rem;
+    letter-spacing: -2px;
+  }
+
+  .process-phase-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .process-item {
+    font-size: 0.85rem;
+    gap: 10px;
+  }
+
+  .process-items {
+    gap: 14px;
+  }
+
+  .process-counter {
+    margin-top: 24px;
+    font-size: 0.9rem;
+  }
+}
