@@ -30,7 +30,7 @@
 }
 
 .everyframe-bg--red {
-  background: var(--orange);
+  background: var(--primary);
 }
 
 /* ── Content grid ── */
@@ -140,13 +140,13 @@
 }
 
 .everyframe-dot.active {
-  background: var(--orange);
+  background: var(--primary);
   transform: scale(1.5);
   box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.25);
 }
 
 .everyframe-dot.done {
-  background: var(--orange);
+  background: var(--primary);
 }
 
 .everyframe-dot--light {

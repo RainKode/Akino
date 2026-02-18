@@ -37,7 +37,7 @@
 }
 
 .logo-arrow {
-  color: var(--orange);
+  color: var(--primary);
   font-size: 1.2rem;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .navbar-menu-btn:hover {
-  background: var(--orange);
+  background: var(--secondary);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -113,7 +113,7 @@
 }
 
 .drawer-close-btn:hover {
-  background: var(--orange);
+  background: var(--secondary);
 }
 
 .drawer-brand {
@@ -177,11 +177,11 @@
 }
 
 .drawer-nav-link:hover {
-  color: var(--orange);
+  color: var(--secondary);
 }
 
 .drawer-nav-link:hover::after {
-  background: var(--orange);
+  background: var(--secondary);
 }
 
 /* Preview cards (desktop only) */

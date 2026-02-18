@@ -1,11 +1,13 @@
 /* ═══════════════════════════════════════════════════════════════
-   OFFRAME — Global Styles
+   AKINO STUDIOS — Global Styles
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  --orange: #E63946;
-  --orange-light: #EF5260;
-  --orange-dark: #C62B38;
+  --primary: #03a6af;
+  --secondary: #fd5863;
+  --primary-dark: #028a92;
+  --secondary-dark: #e04550;
+  --background: #fbfbfe;
   --white: #FFFFFF;
   --off-white: #FAFAFA;
   --light-gray: #F5F5F5;
@@ -57,7 +59,7 @@ img {
 
 /* ── Shared section tag ── */
 .section-tag {
-  color: var(--orange);
+  color: var(--primary);
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 1px;
@@ -68,10 +70,10 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--light-gray);
+  background: var(--white);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--orange);
+  background: var(--secondary);
   border-radius: 4px;
 }

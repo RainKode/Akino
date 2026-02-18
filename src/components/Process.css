@@ -35,7 +35,7 @@
 .process-number-large {
   font-size: clamp(6rem, 12vw, 10rem);
   font-weight: 900;
-  color: var(--orange);
+  color: var(--primary);
   line-height: 1;
   letter-spacing: -4px;
   position: relative;
@@ -54,7 +54,7 @@
   left: 0;
   width: 60%;
   height: 4px;
-  background: var(--orange);
+  background: var(--secondary);
   border-radius: 2px;
 }
 
@@ -73,13 +73,13 @@
 }
 
 .progress-dot.active {
-  background: var(--orange);
+  background: var(--secondary);
   transform: scale(1.4);
-  box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.2);
+  box-shadow: 0 0 0 4px rgba(253, 88, 99, 0.2);
 }
 
 .progress-dot.done {
-  background: var(--orange);
+  background: var(--primary);
 }
 
 .process-right-col {
@@ -126,7 +126,7 @@
   height: 8px;
   min-width: 8px;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--secondary);
 }
 
 .process-counter {
@@ -137,7 +137,7 @@
 }
 
 .process-counter .current {
-  color: var(--orange);
+  color: var(--secondary);
   font-size: 1.2rem;
   font-weight: 800;
 }

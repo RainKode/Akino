@@ -24,7 +24,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: var(--orange);
+  color: var(--primary);
   margin-bottom: 12px;
 }
 
@@ -82,12 +82,12 @@
 }
 
 .faq-header:hover {
-  background: rgba(230, 57, 70, 0.08);
+  background: rgba(253, 88, 99, 0.08);
   color: var(--dark);
 }
 
 .faq-header--active {
-  background: var(--orange);
+  background: var(--secondary);
   color: var(--white);
 }
 
@@ -104,7 +104,7 @@
 /* Panel */
 .faq-panel-wrapper {
   overflow: hidden;
-  background: var(--orange);
+  background: var(--secondary);
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
 

@@ -16,7 +16,7 @@
   text-align: center;
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  color: var(--orange);
+  color: var(--primary);
   font-size: 1.1rem;
   font-weight: 500;
   margin-bottom: 12px;
@@ -93,7 +93,7 @@
 /* ── Quote items ── */
 
 .bento-quote {
-  background: var(--light-gray);
+  background: var(--white);
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -131,7 +131,7 @@
 .bento-role {
   display: block;
   font-size: 0.75rem;
-  color: var(--orange);
+  color: var(--secondary);
   font-weight: 500;
 }
 
@@ -145,7 +145,7 @@
 /* ── Highlight / pink card ── */
 
 .bento-highlight {
-  background: #FFE0E6;
+  background: #fde8ea;
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -155,7 +155,7 @@
 
 .bento-highlight-title {
   font-size: 1rem;
-  color: var(--orange);
+  color: var(--secondary);
   font-weight: 800;
 }
 
@@ -245,7 +245,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--secondary);
   transform: scale(1);
   transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, left 0.3s ease, transform 0.3s ease, border-radius 0.3s ease;
   z-index: 1;

@@ -5,30 +5,30 @@ const stackSlides = [
   {
     src: 'https://images.unsplash.com/photo-1605826832916-d0ea9d6fe71e?w=600&auto=format&fit=crop',
     alt: 'Studio setup',
-    bg: 'white',
+    bg: 'primary',
     line1: 'Your ideas.',
     line2: 'Our edits.',
   },
   {
     src: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&auto=format&fit=crop',
     alt: 'Filming on location',
-    bg: 'red',
+    bg: 'secondary',
     line1: 'Raw cuts.',
     line2: 'Sharp stories.',
   },
   {
     src: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&auto=format&fit=crop',
     alt: 'Color grading',
-    bg: 'white',
+    bg: 'primary',
     line1: 'Your words.',
     line2: 'Our craft.',
   },
   {
     src: 'https://images.unsplash.com/photo-1630797160666-38e8c5ba44c1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     alt: 'Creative direction',
-    bg: 'red',
+    bg: 'secondary',
     line1: 'Your vision.',
-    line2: 'Offrame.',
+    line2: 'Akino Studios.'
   },
 ]
 
@@ -57,14 +57,17 @@ const Hero = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const isRedBg = stackSlides[activeStack].bg === 'red'
+  const currentBg = stackSlides[activeStack].bg
+  const isColoredBg = currentBg === 'primary' || currentBg === 'secondary'
 
   return (
     <div className="hero-wrapper" id="hero">
-      {/* ── Section 1: White — giant "offrame" ── */}
+      {/* ── Section 1: White — giant "Akino" ── */}
       <section className="hero-slide hero-slide--white">
         <div className="hero-slide-content">
-          <h1 className="hero-brand-title">offrame</h1>
+          <h1 className="hero-brand-title">
+            Ak<span className="hero-brand-i">i</span>n<span className="hero-brand-o">o</span>
+          </h1>
         </div>
       </section>
 
@@ -88,7 +91,7 @@ const Hero = () => {
 
       {/* ── Section 4: Stacking images + sticky text with color cascade ── */}
       <section
-        className={`hero-stack ${isRedBg ? 'hero-stack--red' : 'hero-stack--white'}`}
+        className={`hero-stack hero-stack--${currentBg}`}
         ref={stackRef}
       >
         <div className="hero-stack-grid">
@@ -105,7 +108,7 @@ const Hero = () => {
           <div className="hero-stack-sticky">
             <h2
               key={activeStack}
-              className={`hero-stack-heading ${isRedBg ? 'hero-stack-heading--light' : ''}`}
+              className={`hero-stack-heading ${isColoredBg ? 'hero-stack-heading--light' : ''}`}
             >
               {stackSlides[activeStack].line1}<br />
               {stackSlides[activeStack].line2}
@@ -114,7 +117,7 @@ const Hero = () => {
               {stackSlides.map((_, i) => (
                 <span
                   key={i}
-                  className={`hero-stack-dot ${i === activeStack ? 'active' : ''} ${i < activeStack ? 'done' : ''} ${isRedBg ? 'hero-stack-dot--light' : ''}`}
+                  className={`hero-stack-dot ${i === activeStack ? 'active' : ''} ${i < activeStack ? 'done' : ''} ${isColoredBg ? 'hero-stack-dot--light' : ''}`}
                 />
               ))}
             </div>

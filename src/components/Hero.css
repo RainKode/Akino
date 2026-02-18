@@ -23,7 +23,7 @@
 }
 
 .hero-slide--red {
-  background: var(--orange);
+  background: var(--secondary);
   color: var(--white);
 }
 
@@ -48,6 +48,29 @@
   color: var(--dark);
 }
 
+/* Colored dot on the "i" */
+.hero-brand-i {
+  position: relative;
+  color: var(--dark);
+}
+
+.hero-brand-i::after {
+  content: '';
+  position: absolute;
+  top: 0.01em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.18em;
+  height: 0.18em;
+  border-radius: 50%;
+  background: var(--secondary);
+}
+
+/* Subtle primary tint on the "o" */
+.hero-brand-o {
+  color: var(--primary);
+}
+
 /* ── Shared headings for slide 2–3 ── */
 .hero-slide-heading {
   font-size: clamp(2.4rem, 6vw, 5.5rem);
@@ -61,7 +84,7 @@
 }
 
 .hero-slide-heading--red {
-  color: var(--orange);
+  color: var(--secondary);
 }
 
 .hero-slide-heading--right {
@@ -83,8 +106,13 @@
   color: var(--dark);
 }
 
-.hero-stack--red {
-  background: var(--orange);
+.hero-stack--primary {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.hero-stack--secondary {
+  background: var(--secondary);
   color: var(--white);
 }
 
@@ -190,13 +218,13 @@
 }
 
 .hero-stack-dot.active {
-  background: var(--orange);
+  background: var(--secondary);
   transform: scale(1.5);
-  box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.25);
+  box-shadow: 0 0 0 4px rgba(253, 88, 99, 0.25);
 }
 
 .hero-stack-dot.done {
-  background: var(--orange);
+  background: var(--primary);
 }
 
 .hero-stack-dot--light {

@@ -12,9 +12,9 @@ const navItems = [
 ]
 
 const previewCards = [
-  { id: 1, gradient: 'linear-gradient(to left, #f87171, #f97316)' },
-  { id: 2, gradient: 'linear-gradient(to right, #93c5fd, #1e40af)' },
-  { id: 3, gradient: 'linear-gradient(to top left, #f59e0b, #facc15)' },
+  { id: 1, gradient: 'linear-gradient(to left, #03a6af, #028a92)' },
+  { id: 2, gradient: 'linear-gradient(to right, #fd5863, #e04550)' },
+  { id: 3, gradient: 'linear-gradient(to top left, #03a6af, #fd5863)' },
 ]
 
 const Navbar = () => {
@@ -51,7 +51,7 @@ const Navbar = () => {
         <div className="navbar-inner">
           <div className="navbar-logo" onClick={() => scrollTo('hero')}>
             <span className="logo-arrow">↗</span>
-            <span className="logo-text">offrame</span>
+            <span className="logo-text">Akino</span>
           </div>
           <button
             className="navbar-menu-btn"
@@ -103,7 +103,7 @@ const Navbar = () => {
                     <line x1="6" y1="6" x2="18" y2="18" />
                   </svg>
                 </button>
-                <span className="drawer-brand">OFFRAME</span>
+                <span className="drawer-brand">AKINO</span>
               </div>
 
               {/* Drawer body */}

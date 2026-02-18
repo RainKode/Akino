@@ -1,5 +1,5 @@
 .footer {
-  background: var(--light-gray);
+  background: var(--white);
   color: var(--dark);
   padding: 56px 80px 0;
 }
@@ -96,7 +96,7 @@
 }
 
 .newsletter-btn:hover {
-  background: var(--orange);
+  background: var(--secondary);
   color: var(--white);
 }
 
@@ -104,7 +104,7 @@
   position: absolute;
   top: -40px;
   left: 0;
-  background: var(--orange);
+  background: var(--secondary);
   color: var(--white);
   padding: 8px 18px;
   border-radius: 8px;
@@ -174,7 +174,7 @@
 .footer-logo-letter {
   font-size: clamp(5rem, 10vw, 9rem);
   font-weight: 800;
-  color: var(--orange);
+  color: var(--primary);
   text-transform: lowercase;
   line-height: 1;
   display: inline-block;
@@ -199,7 +199,7 @@
 }
 
 .privacy-link:hover {
-  color: var(--orange);
+  color: var(--secondary);
 }
 
 /* ── Responsive ── */

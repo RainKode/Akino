@@ -32,7 +32,7 @@
 
 .project-cta {
   margin-top: 28px;
-  background: var(--orange);
+  background: var(--secondary);
   color: white;
   padding: 14px 32px;
   border-radius: 50px;
@@ -42,9 +42,9 @@
 }
 
 .project-cta:hover {
-  background: var(--orange-dark);
+  background: var(--secondary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(230, 57, 70, 0.3);
+  box-shadow: 0 6px 20px rgba(253, 88, 99, 0.3);
 }
 
 .project-names {
@@ -70,7 +70,7 @@
 }
 
 .project-name-btn:hover {
-  color: var(--orange);
+  color: var(--secondary);
 }
 
 .project-name-btn.active::before {
@@ -82,7 +82,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--secondary);
 }
 
 .project-right {
@@ -251,7 +251,7 @@
   display: block;
   font-size: 2rem;
   font-weight: 800;
-  color: var(--orange);
+  color: var(--primary);
   letter-spacing: -1px;
 }
 

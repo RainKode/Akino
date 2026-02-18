@@ -4,9 +4,9 @@ import './WhatWeDo.css'
 
 const slides = [
   { word: 'EDITING', bg: '#1A1A1A' },
-  { word: 'STORYTELLING', bg: '#E63946' },
+  { word: 'STORYTELLING', bg: '#03a6af' },
   { word: 'SCRIPTING', bg: '#1A1A1A' },
-  { word: '1000+ VIDEOS', bg: '#E63946' },
+  { word: '1000+ VIDEOS', bg: '#fd5863' },
   { word: '3 YEARS', bg: '#1A1A1A' },
 ]
 

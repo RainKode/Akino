@@ -2,7 +2,13 @@ import React, { useRef, useState } from 'react'
 import { motion, useInView } from 'motion/react'
 import './Footer.css'
 
-const logoLetters = ['o', 'f', 'f', 'r', 'a', 'm', 'e']
+const logoLetters = [
+  { char: 'a', color: 'var(--primary)' },
+  { char: 'k', color: 'var(--secondary)' },
+  { char: 'i', color: 'var(--primary)' },
+  { char: 'n', color: 'var(--secondary)' },
+  { char: 'o', color: 'var(--primary)' },
+]
 
 const Footer = () => {
   const containerRef = useRef(null)
@@ -114,15 +120,16 @@ const Footer = () => {
                 custom={index}
                 variants={letterVariants}
                 className="footer-logo-letter"
+                style={{ color: letter.color }}
               >
-                {letter}
+                {letter.char}
               </motion.span>
             ))}
           </motion.div>
         </div>
 
         <div className="footer-bottom">
-          <span>&copy; 2026 Offrame. All rights reserved.</span>
+          <span>&copy; 2026 Akino Studios. All rights reserved.</span>
           <a href="#" className="privacy-link">Privacy Policy</a>
         </div>
       </div>
