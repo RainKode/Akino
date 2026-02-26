@@ -40,14 +40,14 @@ const testimonials = [
     name: 'Matt Rice',
     role: 'Growth',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face',
-    text: 'Akino Studios took over our social strategy, slapped their magic on it, and boom - videos that go viral without getting lucky...',
+    text: 'Akino Studio took over our social strategy, slapped their magic on it, and boom - videos that go viral without getting lucky...',
   },
   {
     type: 'quote',
     name: 'Alex Lin',
     role: 'Growth at Replit',
     avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop&crop=face',
-    text: 'Akino Studios move fast and produce really high quality content, fill in the gap that we didn\'t know possible, the firs...',
+    text: 'Akino Studio moves fast and produces really high quality content, filling in the gap that we didn\'t know possible, the firs...',
   },
 ]
 

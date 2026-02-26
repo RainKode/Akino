@@ -1,49 +1,44 @@
 import React, { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useInView } from 'motion/react'
 import './Footer.css'
 
-const logoLetters = [
-  { char: 'a', color: 'var(--primary)' },
-  { char: 'k', color: 'var(--secondary)' },
-  { char: 'i', color: 'var(--primary)' },
-  { char: 'n', color: 'var(--secondary)' },
-  { char: 'o', color: 'var(--primary)' },
-]
+
 
 const Footer = () => {
   const containerRef = useRef(null)
   const svgRef = useRef(null)
   const isInView = useInView(svgRef, { once: false, amount: 0.3 })
-  const [openPopup, setOpenPopUp] = useState(false)
+  const [newsletterStatus, setNewsletterStatus] = useState('idle') // idle | sending | success | error
 
-  const letterVariants = {
-    visible: (i) => ({
-      translateY: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 12,
-        duration: 0.4,
-        delay: i * 0.06,
-      },
-    }),
-    hidden: {
-      translateY: 80,
-      opacity: 0,
-    },
-  }
-
-  const handleNewsLetterData = (e) => {
+  const handleNewsLetterData = async (e) => {
     e.preventDefault()
     const target = e.target
     const formData = new FormData(target)
-    const clientEmail = formData.get('newsletter_email')
-    setOpenPopUp(true)
-    target.reset()
-    setTimeout(() => {
-      setOpenPopUp(false)
-    }, 2000)
+    formData.append('access_key', 'fa79ee1b-0b70-4c39-a489-9a908d7669f5')
+    formData.append('subject', 'New newsletter subscriber')
+    formData.append('from_name', 'Akino Studio Website')
+    setNewsletterStatus('sending')
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const data = await res.json()
+      if (data.success) {
+        setNewsletterStatus('success')
+        target.reset()
+        setTimeout(() => setNewsletterStatus('idle'), 3000)
+      } else {
+        setNewsletterStatus('error')
+        setTimeout(() => setNewsletterStatus('idle'), 3000)
+      }
+    } catch {
+      setNewsletterStatus('error')
+      setTimeout(() => setNewsletterStatus('idle'), 3000)
+    }
   }
 
   return (
@@ -82,8 +77,11 @@ const Footer = () => {
                     </svg>
                   </button>
                 </form>
-                {openPopup && (
+                {newsletterStatus === 'success' && (
                   <div className="newsletter-popup">Thanks for subscribing!</div>
+                )}
+                {newsletterStatus === 'error' && (
+                  <div className="newsletter-popup newsletter-popup--error">Something went wrong. Try again.</div>
                 )}
               </div>
             </div>
@@ -97,40 +95,32 @@ const Footer = () => {
               <a href="#process">Process</a>
               <a href="#testimonials">Testimonials</a>
               <a href="#contact">Contact</a>
+              <Link to="/blog">Blog</Link>
             </div>
             <div className="footer-col">
               <h4>Social</h4>
-              <a href="#" target="_blank" rel="noopener noreferrer">TikTok</a>
-              <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a href="#" target="_blank" rel="noopener noreferrer">YouTube</a>
+              <a href="https://www.tiktok.com/@akinostudio" target="_blank" rel="noopener noreferrer" aria-label="Follow Akino Studio on TikTok">TikTok</a>
+              <a href="https://instagram.com/studio.akino" target="_blank" rel="noopener noreferrer" aria-label="Follow Akino Studio on Instagram">Instagram</a>
+              <a href="https://www.linkedin.com/company/akinostudio" target="_blank" rel="noopener noreferrer" aria-label="Follow Akino Studio on LinkedIn">LinkedIn</a>
+              <a href="https://www.youtube.com/@AkinoStudio" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to Akino Studio on YouTube">YouTube</a>
             </div>
           </div>
         </div>
 
         <div className="footer-logo-section" ref={svgRef}>
           <motion.div
-            className="footer-logo-letters"
-            initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
+            className="footer-logo-img-wrapper"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            {logoLetters.map((letter, index) => (
-              <motion.span
-                key={index}
-                custom={index}
-                variants={letterVariants}
-                className="footer-logo-letter"
-                style={{ color: letter.color }}
-              >
-                {letter.char}
-              </motion.span>
-            ))}
+            <img src="/logo.svg" alt="Akino Studio — Video Production Agency" className="footer-logo-img" />
           </motion.div>
         </div>
 
         <div className="footer-bottom">
-          <span>&copy; 2026 Akino Studios. All rights reserved.</span>
-          <a href="#" className="privacy-link">Privacy Policy</a>
+          <span>&copy; 2026 Akino Studio. All rights reserved.</span>
+          <Link to="/privacy-policy" className="privacy-link">Privacy Policy</Link>
         </div>
       </div>
     </footer>

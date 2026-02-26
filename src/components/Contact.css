@@ -82,6 +82,26 @@
   box-shadow: 0 8px 25px rgba(253, 88, 99, 0.3);
 }
 
+.contact-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.contact-status {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.contact-status--success {
+  color: var(--primary);
+}
+
+.contact-status--error {
+  color: var(--secondary);
+}
+
 @media (max-width: 768px) {
   .contact {
     padding: 60px 20px;

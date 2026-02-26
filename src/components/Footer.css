@@ -164,21 +164,15 @@
   overflow: hidden;
 }
 
-.footer-logo-letters {
+.footer-logo-img-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0;
 }
 
-.footer-logo-letter {
-  font-size: clamp(5rem, 10vw, 9rem);
-  font-weight: 800;
-  color: var(--primary);
-  text-transform: lowercase;
-  line-height: 1;
-  display: inline-block;
-  letter-spacing: -0.02em;
+.footer-logo-img {
+  width: clamp(280px, 50vw, 550px);
+  height: auto;
 }
 
 /* ── Bottom bar ── */
@@ -219,10 +213,6 @@
 
   .footer-links {
     gap: 40px;
-  }
-
-  .footer-logo-letter {
-    font-size: clamp(3rem, 12vw, 5rem);
   }
 
   .footer-bottom {
@@ -267,10 +257,6 @@
 
   .footer-col a {
     font-size: 0.95rem;
-  }
-
-  .footer-logo-letter {
-    font-size: clamp(2.5rem, 14vw, 4rem);
   }
 
   .footer-bottom {

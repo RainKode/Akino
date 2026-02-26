@@ -1,0 +1,8 @@
+# https://akinostudio.com robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://akinostudio.com/sitemap.xml
+
+# Crawl-delay (optional, respected by some bots)
+Crawl-delay: 1

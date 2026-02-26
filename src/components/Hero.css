@@ -39,36 +39,17 @@
   padding: 0 32px;
 }
 
-/* ── Section 1: giant brand title ── */
-.hero-brand-title {
-  font-size: clamp(7rem, 18vw, 16rem);
-  font-weight: 800;
-  letter-spacing: -6px;
-  line-height: 1;
-  color: var(--dark);
+/* ── Section 1: giant brand logo ── */
+.hero-brand-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-/* Colored dot on the "i" */
-.hero-brand-i {
-  position: relative;
-  color: var(--dark);
-}
-
-.hero-brand-i::after {
-  content: '';
-  position: absolute;
-  top: 0.01em;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0.18em;
-  height: 0.18em;
-  border-radius: 50%;
-  background: var(--secondary);
-}
-
-/* Subtle primary tint on the "o" */
-.hero-brand-o {
-  color: var(--primary);
+.hero-brand-logo-img {
+  width: clamp(320px, 55vw, 800px);
+  height: auto;
 }
 
 /* ── Shared headings for slide 2–3 ── */
@@ -244,9 +225,8 @@
    Responsive
    ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 968px) {
-  .hero-brand-title {
-    font-size: clamp(4rem, 20vw, 8rem);
-    letter-spacing: -3px;
+  .hero-brand-logo-img {
+    width: clamp(240px, 60vw, 500px);
   }
 
   .hero-slide-heading {
@@ -286,9 +266,8 @@
 }
 
 @media (max-width: 480px) {
-  .hero-brand-title {
-    font-size: clamp(3rem, 18vw, 5rem);
-    letter-spacing: -2px;
+  .hero-brand-logo-img {
+    width: clamp(200px, 70vw, 360px);
   }
 
   .hero-slide-content {

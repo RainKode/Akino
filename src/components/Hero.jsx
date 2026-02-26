@@ -28,7 +28,7 @@ const stackSlides = [
     alt: 'Creative direction',
     bg: 'secondary',
     line1: 'Your vision.',
-    line2: 'Akino Studios.'
+    line2: 'Akino Studio.'
   },
 ]
 
@@ -65,9 +65,10 @@ const Hero = () => {
       {/* ── Section 1: White — giant "Akino" ── */}
       <section className="hero-slide hero-slide--white">
         <div className="hero-slide-content">
-          <h1 className="hero-brand-title">
-            Ak<span className="hero-brand-i">i</span>n<span className="hero-brand-o">o</span>
-          </h1>
+          <h1 className="sr-only">Akino Studio — Video Production Agency | Brand Films, Social Shorts & Campaign Videos</h1>
+          <div className="hero-brand-logo">
+            <img src="/logo.svg" alt="Akino Studio — Video Production Agency" className="hero-brand-logo-img" />
+          </div>
         </div>
       </section>
 
@@ -75,7 +76,7 @@ const Hero = () => {
       <section className="hero-slide hero-slide--red hero-slide--rounded">
         <div className="hero-slide-content">
           <h2 className="hero-slide-heading hero-slide-heading--large">
-            We create content that<br />cuts through the noise.
+            We create <strong>video content</strong> that<br />cuts through the noise.
           </h2>
         </div>
       </section>
@@ -84,7 +85,7 @@ const Hero = () => {
       <section className="hero-slide hero-slide--white hero-slide--rounded">
         <div className="hero-slide-content">
           <h2 className="hero-slide-heading hero-slide-heading--large hero-slide-heading--red">
-            Brand films. Social shorts.<br />Campaign videos. All of it.
+            <strong>Brand films</strong>. <strong>Social shorts</strong>.<br /><strong>Campaign videos</strong>. All of it.
           </h2>
         </div>
       </section>

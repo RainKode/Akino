@@ -1,0 +1,240 @@
+/* ═══════════════════════════════════════════════════════════════
+   PRIVACY POLICY PAGE
+   ═══════════════════════════════════════════════════════════════ */
+
+.privacy-page {
+  min-height: 100vh;
+  background: var(--white);
+  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+.privacy-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.privacy-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.privacy-back-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+  transition: color var(--transition);
+}
+
+.privacy-back-link:hover {
+  color: var(--primary);
+}
+
+.privacy-logo-img {
+  height: 28px;
+  width: auto;
+}
+
+/* ── Content ── */
+.privacy-content {
+  flex: 1;
+  padding: 60px 40px 80px;
+}
+
+.privacy-content-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ── Hero ── */
+.privacy-hero {
+  margin-bottom: 56px;
+}
+
+.privacy-hero .section-tag {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.privacy-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+
+.privacy-effective {
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+/* ── Body ── */
+.privacy-body {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.privacy-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.privacy-section h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.privacy-section p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.privacy-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.privacy-section ul li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.privacy-section ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.privacy-section ul li strong {
+  color: var(--dark);
+}
+
+/* ── Contact block ── */
+.privacy-contact-block {
+  background: var(--light-gray);
+  border-left: 3px solid var(--primary);
+  padding: 20px 24px;
+  border-radius: var(--radius-sm);
+  margin-top: 8px;
+}
+
+.privacy-contact-block p {
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.privacy-contact-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Footer ── */
+.privacy-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 20px 40px;
+}
+
+.privacy-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.privacy-home-link {
+  font-weight: 500;
+  color: var(--primary);
+  transition: color var(--transition);
+}
+
+.privacy-home-link:hover {
+  color: var(--primary-dark);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .privacy-header-inner {
+    padding: 14px 20px;
+  }
+
+  .privacy-content {
+    padding: 40px 20px 60px;
+  }
+
+  .privacy-hero {
+    margin-bottom: 40px;
+  }
+
+  .privacy-body {
+    gap: 32px;
+  }
+
+  .privacy-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .privacy-footer {
+    padding: 16px 20px;
+  }
+
+  .privacy-footer-inner {
+    flex-direction: column-reverse;
+    gap: 8px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .privacy-title {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+
+  .privacy-section p,
+  .privacy-section ul li {
+    font-size: 0.95rem;
+  }
+
+  .privacy-contact-block {
+    padding: 16px 18px;
+  }
+}

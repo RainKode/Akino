@@ -49,9 +49,8 @@ const Navbar = () => {
       {/* ── Fixed header bar ── */}
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="navbar-inner">
-          <div className="navbar-logo" onClick={() => scrollTo('hero')}>
-            <span className="logo-arrow">↗</span>
-            <span className="logo-text">Akino</span>
+          <div className="navbar-logo" onClick={() => scrollTo('hero')} role="button" tabIndex={0} aria-label="Go to homepage">
+            <img src="/logo.svg" alt="Akino Studio" className="navbar-logo-img" />
           </div>
           <button
             className="navbar-menu-btn"

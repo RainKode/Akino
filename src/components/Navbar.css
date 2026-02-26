@@ -36,14 +36,9 @@
   z-index: 1;
 }
 
-.logo-arrow {
-  color: var(--primary);
-  font-size: 1.2rem;
-}
-
-.logo-text {
-  color: var(--dark);
-  letter-spacing: -0.5px;
+.navbar-logo-img {
+  height: 32px;
+  width: auto;
 }
 
 /* Menu button */

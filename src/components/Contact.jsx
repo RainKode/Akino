@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './Contact.css'
 
+const WEB3FORMS_KEY = '0cc0db32-df50-4683-8f2e-07c693fc7e15'
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -8,15 +10,44 @@ const Contact = () => {
     company: '',
     message: '',
   })
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    alert('Thanks for reaching out! We\'ll get back to you soon.')
-    setFormData({ name: '', email: '', company: '', message: '' })
+    setStatus('sending')
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `New enquiry from ${formData.name}`,
+          from_name: 'Akino Studio Website',
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || 'Not provided',
+          message: formData.message,
+        }),
+      })
+
+      const data = await res.json()
+      if (data.success) {
+        setStatus('success')
+        setFormData({ name: '', email: '', company: '', message: '' })
+        setTimeout(() => setStatus('idle'), 4000)
+      } else {
+        setStatus('error')
+        setTimeout(() => setStatus('idle'), 4000)
+      }
+    } catch {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 4000)
+    }
   }
 
   return (
@@ -30,6 +61,8 @@ const Contact = () => {
           </p>
         </div>
         <form className="contact-form" onSubmit={handleSubmit}>
+          {/* Honeypot spam prevention */}
+          <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
           <div className="form-row">
             <input
               type="text"
@@ -37,6 +70,7 @@ const Contact = () => {
               placeholder="Your name"
               value={formData.name}
               onChange={handleChange}
+              autoComplete="name"
               required
             />
             <input
@@ -45,6 +79,7 @@ const Contact = () => {
               placeholder="Email address"
               value={formData.email}
               onChange={handleChange}
+              autoComplete="email"
               required
             />
           </div>
@@ -54,6 +89,7 @@ const Contact = () => {
             placeholder="Company / Brand"
             value={formData.company}
             onChange={handleChange}
+            autoComplete="organization"
           />
           <textarea
             name="message"
@@ -63,9 +99,15 @@ const Contact = () => {
             onChange={handleChange}
             required
           />
-          <button type="submit" className="contact-submit">
-            Get in touch
+          <button type="submit" className="contact-submit" disabled={status === 'sending'}>
+            {status === 'sending' ? 'Sending...' : 'Get in touch'}
           </button>
+          {status === 'success' && (
+            <p className="contact-status contact-status--success">Thanks for reaching out! We'll get back to you soon.</p>
+          )}
+          {status === 'error' && (
+            <p className="contact-status contact-status--error">Something went wrong. Please try again or email us directly.</p>
+          )}
         </form>
       </div>
     </section>
