@@ -8,6 +8,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,68 +152,111 @@
   color: #ccc;
 }
 
-@media (max-width: 768px) {
-  .process {
-    height: 300vh;
-  }
-  .process-content {
-    flex-direction: column;
-    gap: 30px;
-    padding: 0 30px;
-    text-align: center;
-  }
-  .process-left-col {
-    flex-direction: row;
-  }
-  .process-progress {
-    flex-direction: row;
-  }
-  .process-number-large {
-    font-size: 5rem;
-  }
-  .process-number-large::after {
-    display: none;
-  }
-  .process-phase-title {
-    font-size: 1.6rem;
-  }
-  .process-item {
-    justify-content: center;
-    font-size: 0.95rem;
-  }
+/* Desktop tablet fallback — keep original scroll behavior */
+@media (max-width: 768px) and (min-width: 969px) {
+  /* unused — mobile uses .process--mobile now */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Mobile Process — stacked cards (replaces sticky scroll)
+   ═══════════════════════════════════════════════════════════════ */
+.process--mobile {
+  height: auto;
+  padding: 60px 20px;
+}
+
+.process-mobile-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.process-mobile-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-top: 8px;
+}
+
+.process-mobile-card {
+  display: flex;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid #eee;
+  /* Scroll-triggered animation: start hidden */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.process-mobile-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.process-mobile-card:last-child {
+  border-bottom: none;
+}
+
+.process-mobile-card-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1;
+  min-width: 56px;
+}
+
+.process-mobile-card-body {
+  flex: 1;
+}
+
+.process-mobile-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+
+.process-mobile-card-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.process-mobile-card-items li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text);
 }
 
 @media (max-width: 480px) {
-  .process {
-    height: 280vh;
+  .process--mobile {
+    padding: 40px 12px;
   }
 
-  .process-content {
-    padding: 0 16px;
-    gap: 20px;
+  .process-mobile-title {
+    font-size: 1.5rem;
   }
 
-  .process-number-large {
-    font-size: 3.5rem;
-    letter-spacing: -2px;
-  }
-
-  .process-phase-title {
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-  }
-
-  .process-item {
-    font-size: 0.85rem;
-    gap: 10px;
-  }
-
-  .process-items {
+  .process-mobile-card {
     gap: 14px;
+    padding: 18px 0;
   }
 
-  .process-counter {
-    margin-top: 24px;
-    font-size: 0.9rem;
+  .process-mobile-card-number {
+    font-size: 2rem;
+    min-width: 44px;
+  }
+
+  .process-mobile-card-title {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+  }
+
+  .process-mobile-card-items li {
+    font-size: 0.82rem;
+    gap: 8px;
   }
 }

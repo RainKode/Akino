@@ -102,11 +102,15 @@ const VideoCard = ({ video }) => {
   return <YouTubeVideoCard video={video} />
 }
 
+const MOBILE_BP = 968
+
 const ProjectShowcase = () => {
   const [activeProject, setActiveProject] = useState(0)
   const sectionRef = useRef(null)
 
+  // Desktop only: scroll-driven project switching
   useEffect(() => {
+    if (window.innerWidth <= MOBILE_BP) return
     const handleScroll = () => {
       if (!sectionRef.current) return
       const rect = sectionRef.current.getBoundingClientRect()

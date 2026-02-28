@@ -2,38 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://akinostudio.com/</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://akinostudio.com/blog</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://akinostudio.com/blog/why-every-brand-needs-video-content-in-2026</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://akinostudio.com/blog/how-we-produced-100-videos-in-one-year</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://akinostudio.com/blog/brand-film-vs-commercial-what-your-business-actually-needs</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://akinostudio.com/privacy-policy</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://akinostudio.com/blog/instagram-the-algorithm-isn-t-shadowbanning-you-it-just-thinks-you-re-boring</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://akinostudio.com/blog/adobe-just-launched-an-ai-tool-that-edits-your-videos-for-you-sort-of</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

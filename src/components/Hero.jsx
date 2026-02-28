@@ -32,10 +32,22 @@ const stackSlides = [
   },
 ]
 
+const MOBILE_BP = 968
+
 const Hero = () => {
   const stackRef = useRef(null)
   const [activeStack, setActiveStack] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
+  // Detect mobile / tablet
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= MOBILE_BP)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  // Scroll-driven stacking animation (desktop + mobile)
   useEffect(() => {
     const handleScroll = () => {
       if (!stackRef.current) return
@@ -52,10 +64,9 @@ const Hero = () => {
         setActiveStack(0)
       }
     }
-
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isMobile])
 
   const currentBg = stackSlides[activeStack].bg
   const isColoredBg = currentBg === 'primary' || currentBg === 'secondary'

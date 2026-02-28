@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { ReactLenis } from 'lenis/react'
 import Navbar from './components/Navbar'
@@ -16,22 +16,28 @@ import Blog from './components/Blog'
 import BlogPost from './components/BlogPost'
 import './App.css'
 
+/* Detect Android — Lenis smooth-scroll sets overflow:hidden on <html>
+   which breaks position:sticky on Android Chrome. Disable it there. */
+const isAndroid = typeof navigator !== 'undefined' && /android/i.test(navigator.userAgent)
+
 function HomePage() {
-  return (
-    <ReactLenis root>
-      <div className="app">
-        <Navbar />
-        <Hero />
-        <WhatWeDo />
-        <ProjectShowcase />
-        <Process />
-        <Testimonials />
-        <FAQ />
-        <Contact />
-        <Footer />
-      </div>
-    </ReactLenis>
+  const content = (
+    <div className="app">
+      <Navbar />
+      <Hero />
+      <WhatWeDo />
+      <ProjectShowcase />
+      <Process />
+      <Testimonials />
+      <FAQ />
+      <Contact />
+      <Footer />
+    </div>
   )
+
+  if (isAndroid) return content
+
+  return <ReactLenis root>{content}</ReactLenis>
 }
 
 function App() {

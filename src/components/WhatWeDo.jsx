@@ -14,13 +14,13 @@ const WhatWeDo = () => {
   const trackRef = useRef(null)
   const sectionRef = useRef(null)
 
+  // Horizontal scroll animation — works on desktop + mobile
   useEffect(() => {
     if (!trackRef.current || !sectionRef.current) return
 
     const items = trackRef.current.querySelectorAll('.wwd-slide')
     const totalSlides = items.length
 
-    // Horizontal scroll driven by vertical section scroll
     scroll(
       animate(trackRef.current, {
         transform: ['none', `translateX(-${(totalSlides - 1) * 100}vw)`],

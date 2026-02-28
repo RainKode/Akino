@@ -49,11 +49,61 @@ const phases = [
   },
 ]
 
+const MOBILE_BP = 968
+
+/* Scroll-triggered card with IntersectionObserver */
+const MobilePhaseCard = ({ phase, index }) => {
+  const cardRef = useRef(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = cardRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true) },
+      { threshold: 0.2 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div
+      ref={cardRef}
+      className={`process-mobile-card ${visible ? 'process-mobile-card--visible' : ''}`}
+      style={{ transitionDelay: `${index * 0.08}s` }}
+    >
+      <div className="process-mobile-card-number">{phase.number}</div>
+      <div className="process-mobile-card-body">
+        <h3 className="process-mobile-card-title">{phase.title}</h3>
+        <ul className="process-mobile-card-items">
+          {phase.items.map((item, j) => (
+            <li key={j}>
+              <span className="process-bullet"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  )
+}
+
 const Process = () => {
   const sectionRef = useRef(null)
   const [activePhase, setActivePhase] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= MOBILE_BP)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  // Desktop: scroll-driven phase switching (unchanged)
+  useEffect(() => {
+    if (isMobile) return
     const handleScroll = () => {
       if (!sectionRef.current) return
       const rect = sectionRef.current.getBoundingClientRect()
@@ -67,12 +117,12 @@ const Process = () => {
         setActivePhase(Math.min(index, phases.length - 1))
       }
     }
-
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isMobile])
 
-  return (
+  /* Desktop view — scroll-driven single phase */
+  const renderDesktop = () => (
     <section className="process" id="process" ref={sectionRef}>
       <div className="process-sticky">
         <div className="process-content">
@@ -87,7 +137,6 @@ const Process = () => {
               ))}
             </div>
           </div>
-
           <div className="process-right-col" key={activePhase}>
             <span className="section-tag">&lt; Our Process &gt;</span>
             <h3 className="process-phase-title">{phases[activePhase].title}</h3>
@@ -109,6 +158,21 @@ const Process = () => {
       </div>
     </section>
   )
+
+  /* Mobile view — all phases with scroll-triggered animations */
+  const renderMobile = () => (
+    <section className="process process--mobile" id="process">
+      <div className="process-mobile-header">
+        <span className="section-tag">&lt; Our Process &gt;</span>
+        <h2 className="process-mobile-title">How we work</h2>
+      </div>
+      {phases.map((phase, i) => (
+        <MobilePhaseCard key={i} phase={phase} index={i} />
+      ))}
+    </section>
+  )
+
+  return isMobile ? renderMobile() : renderDesktop()
 }
 
 export default Process

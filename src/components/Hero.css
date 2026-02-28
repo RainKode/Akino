@@ -4,6 +4,7 @@
 
 .hero-wrapper {
   background: var(--white);
+  overflow-x: clip; /* prevent any child from widening viewport on Android */
 }
 
 /* ── Shared slide ── */
@@ -11,6 +12,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100svh;
   width: 100%;
   display: grid;
   place-content: center;
@@ -112,6 +114,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100svh;
   display: grid;
   place-content: center;
 }
@@ -138,6 +141,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -225,39 +229,61 @@
    Responsive
    ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 968px) {
+  /* ── Uncover card stacking ── */
+  .hero-wrapper > :nth-child(1) { z-index: 1; }
+  .hero-wrapper > :nth-child(2) { z-index: 2; }
+  .hero-wrapper > :nth-child(3) { z-index: 3; }
+  .hero-wrapper > :nth-child(4) { z-index: 4; }
+
+  .hero-slide-content {
+    padding: 0 20px;
+  }
+
   .hero-brand-logo-img {
-    width: clamp(240px, 60vw, 500px);
+    width: clamp(220px, 55vw, 400px);
   }
 
   .hero-slide-heading {
-    font-size: clamp(2rem, 6vw, 3rem);
+    font-size: clamp(1.8rem, 5.5vw, 2.8rem);
   }
 
   .hero-slide-heading--large {
-    font-size: clamp(2.2rem, 7vw, 3.5rem);
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .hero-slide--rounded {
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.2);
   }
 
   .hero-stack-grid {
     grid-template-columns: 1fr;
-    padding: 0 24px;
+    padding: 0 20px;
   }
 
   .hero-stack-sticky {
     position: relative;
     height: auto;
-    padding: 80px 0 24px;
+    padding: 48px 0 16px;
     order: -1;
+    gap: 20px;
   }
 
   .hero-stack-heading {
     text-align: center;
-    font-size: clamp(2.4rem, 8vw, 3.5rem);
+    font-size: clamp(2rem, 7vw, 3rem);
     letter-spacing: -1px;
   }
 
+  /* Sticky stacking images — same as desktop, mobile sizes */
+  .hero-stack-fig {
+    height: 100vh;
+    height: 100svh;
+  }
+
   .hero-stack-fig img {
-    width: 300px;
-    height: 300px;
+    width: min(75vw, 340px);
+    height: min(75vw, 340px);
   }
 
   .hero-stack-dots {
@@ -267,7 +293,7 @@
 
 @media (max-width: 480px) {
   .hero-brand-logo-img {
-    width: clamp(200px, 70vw, 360px);
+    width: clamp(180px, 65vw, 300px);
   }
 
   .hero-slide-content {
@@ -275,32 +301,34 @@
   }
 
   .hero-slide-heading {
-    font-size: clamp(1.6rem, 6vw, 2.2rem);
-    letter-spacing: -1px;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    letter-spacing: -0.5px;
   }
 
   .hero-slide-heading--large {
-    font-size: clamp(1.8rem, 7vw, 2.5rem);
+    font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+  }
+
+  .hero-slide--rounded {
+    border-radius: 12px 12px 0 0;
   }
 
   .hero-stack-grid {
-    padding: 0 16px;
+    padding: 0 12px;
   }
 
   .hero-stack-sticky {
-    padding: 60px 0 16px;
-    gap: 24px;
+    padding: 36px 0 12px;
+    gap: 14px;
   }
 
   .hero-stack-heading {
-    font-size: clamp(1.8rem, 8vw, 2.4rem);
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
     letter-spacing: -0.5px;
   }
 
   .hero-stack-fig img {
-    width: 100%;
-    max-width: 280px;
-    height: auto;
-    aspect-ratio: 1;
+    width: min(65vw, 280px);
+    height: min(65vw, 280px);
   }
 }

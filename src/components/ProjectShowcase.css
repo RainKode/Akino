@@ -7,6 +7,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100svh;
   display: flex;
   align-items: center;
   gap: 60px;
@@ -267,12 +268,14 @@
 
 @media (max-width: 968px) {
   .project-showcase {
-    height: 200vh;
+    height: auto;
   }
   .project-sticky-container {
+    position: relative;
+    height: auto;
     flex-direction: column;
-    gap: 24px;
-    padding: 80px 20px 40px;
+    gap: 16px;
+    padding: 48px 16px 24px;
     justify-content: center;
   }
   .project-left {
@@ -281,10 +284,15 @@
     text-align: center;
   }
   .project-heading {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    margin-top: 8px;
+  }
+  .project-cta {
+    margin-top: 16px;
+    padding: 12px 28px;
   }
   .project-name-btn {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-align: center;
   }
   .project-name-btn.active::before {
@@ -294,15 +302,27 @@
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .project-right {
+    max-height: none;
   }
   .expand-cards-row {
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
+    aspect-ratio: auto;
+    max-height: none;
+    animation: fadeInCards 0.5s ease both;
+  }
+
+  @keyframes fadeInCards {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   .expand-card {
     width: 100% !important;
-    height: 280px;
+    height: 200px;
   }
   .expand-cards-row:hover .expand-card {
     width: 100%;
@@ -317,57 +337,66 @@
   .expand-card::before {
     opacity: 1;
   }
+  .project-stats-row {
+    padding: 16px 0;
+    gap: 8px;
+  }
   .project-stat-number {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+  }
+  .project-stat-label {
+    font-size: 0.65rem;
   }
 }
 
 @media (max-width: 480px) {
   .project-showcase {
-    height: 180vh;
+    height: auto;
   }
 
   .project-sticky-container {
-    padding: 70px 16px 24px;
-    gap: 16px;
-  }
-
-  .project-heading {
-    font-size: 1.3rem;
-  }
-
-  .project-cta {
-    padding: 12px 28px;
-    font-size: 0.9rem;
-  }
-
-  .project-names {
-    margin-top: 20px;
+    padding: 40px 12px 20px;
     gap: 10px;
   }
 
+  .project-heading {
+    font-size: 1.15rem;
+    margin-top: 6px;
+  }
+
+  .project-cta {
+    padding: 10px 24px;
+    font-size: 0.85rem;
+    margin-top: 12px;
+  }
+
+  .project-names {
+    margin-top: 10px;
+    gap: 8px;
+  }
+
   .project-name-btn {
-    font-size: 1rem;
-  }
-
-  .expand-card {
-    height: 200px;
-  }
-
-  .expand-card-title {
     font-size: 0.95rem;
   }
 
+  .expand-card {
+    height: 170px;
+  }
+
+  .expand-card-title {
+    font-size: 0.85rem;
+  }
+
   .project-stats-row {
-    padding: 16px 0;
+    padding: 12px 0;
   }
 
   .project-stat-number {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .project-stat-label {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     letter-spacing: 1px;
   }
 }

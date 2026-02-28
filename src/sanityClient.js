@@ -16,7 +16,7 @@ const sanityClient = createClient({
   projectId: '15a0z2p7',
   dataset: 'production',
   apiVersion: '2026-02-26',
-  useCdn: true, // `true` for fast, cached reads (great for a blog)
+  useCdn: false, // `false` to use the live API directly — avoids CDN hangs during SPA navigation
 })
 
 export default sanityClient

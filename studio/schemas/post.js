@@ -5,6 +5,7 @@ export default defineType({
   title: 'Blog Post',
   type: 'document',
   fields: [
+    /* ── Core Fields ─────────────────────────────────── */
     defineField({
       name: 'title',
       title: 'Title',
@@ -26,7 +27,8 @@ export default defineType({
       title: 'Excerpt',
       type: 'text',
       rows: 3,
-      description: 'Short description for the blog listing card (150-200 chars recommended)',
+      description: 'Short description for the blog listing card and SEO meta description (150-160 chars ideal).',
+      validation: (Rule) => Rule.max(200),
     }),
     defineField({
       name: 'mainImage',
@@ -36,6 +38,8 @@ export default defineType({
         hotspot: true,
       },
     }),
+
+    /* ── Taxonomy ─────────────────────────────────────── */
     defineField({
       name: 'category',
       title: 'Category',
@@ -47,9 +51,46 @@ export default defineType({
           {title: 'Education', value: 'Education'},
           {title: 'Case Study', value: 'Case Study'},
           {title: 'Industry News', value: 'Industry News'},
+          {title: 'Tips', value: 'Tips'},
+          {title: 'Social Media', value: 'Social Media'},
+          {title: 'Storytelling', value: 'Storytelling'},
+          {title: 'Content', value: 'Content'},
+          {title: 'Branding', value: 'Branding'},
         ],
       },
+      validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags',
+        list: [
+          {title: 'Strategy', value: 'Strategy'},
+          {title: 'Marketing', value: 'Marketing'},
+          {title: 'Content', value: 'Content'},
+          {title: 'Behind the Scenes', value: 'Behind the Scenes'},
+          {title: 'Production', value: 'Production'},
+          {title: 'Education', value: 'Education'},
+          {title: 'Branding', value: 'Branding'},
+          {title: 'Tips', value: 'Tips'},
+          {title: 'Social Media', value: 'Social Media'},
+          {title: 'Storytelling', value: 'Storytelling'},
+        ],
+      },
+      description: 'Add 1-3 tags for the blog listing cards.',
+    }),
+    defineField({
+      name: 'author',
+      title: 'Author',
+      type: 'string',
+      initialValue: 'Akino Studio',
+      description: 'Author name displayed on the blog post.',
+    }),
+
+    /* ── Timing ───────────────────────────────────────── */
     defineField({
       name: 'readTime',
       title: 'Read Time',
@@ -62,6 +103,36 @@ export default defineType({
       type: 'datetime',
       description: 'Post will only appear on the site after this date/time. Leave empty to publish immediately.',
     }),
+
+    /* ── SEO ──────────────────────────────────────────── */
+    defineField({
+      name: 'seoTitle',
+      title: 'SEO Title',
+      type: 'string',
+      description: 'Custom title for search engines (50-60 chars). Falls back to the post title if empty.',
+      validation: (Rule) => Rule.max(70),
+      group: 'seo',
+    }),
+    defineField({
+      name: 'seoDescription',
+      title: 'SEO Meta Description',
+      type: 'text',
+      rows: 2,
+      description: 'Custom meta description for search engines (150-160 chars). Falls back to excerpt if empty.',
+      validation: (Rule) => Rule.max(170),
+      group: 'seo',
+    }),
+    defineField({
+      name: 'seoKeywords',
+      title: 'SEO Keywords',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {layout: 'tags'},
+      description: 'Target keywords for this post (used in meta keywords tag).',
+      group: 'seo',
+    }),
+
+    /* ── Content ──────────────────────────────────────── */
     defineField({
       name: 'rawHtml',
       title: 'Raw HTML Content',
@@ -106,6 +177,9 @@ export default defineType({
         },
       ],
     }),
+  ],
+  groups: [
+    {name: 'seo', title: 'SEO', icon: () => '🔍'},
   ],
   orderings: [
     {

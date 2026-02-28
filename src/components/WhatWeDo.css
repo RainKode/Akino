@@ -5,6 +5,7 @@
 .wwd-scroll {
   height: 500vh;
   position: relative;
+  overflow: clip; /* contain the 500vw-wide track — prevents viewport expansion on Android */
 }
 
 .wwd-track {
@@ -20,6 +21,7 @@
   flex-shrink: 0;
   width: 100vw;
   height: 100vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,25 +47,29 @@
    Responsive
    ═══════════════════════════════════════════════════════════════ */
 
-@media (max-width: 768px) {
+@media (max-width: 968px) {
   .wwd-scroll {
-    height: 400vh;
+    height: 350vh;   /* shorter scroll distance on mobile */
+  }
+
+  .wwd-slide {
+    height: 100vh;
+    height: 100svh;
   }
 
   .wwd-slide-word {
-    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-size: clamp(2.5rem, 12vw, 5rem);
     letter-spacing: -1px;
   }
 }
 
 @media (max-width: 480px) {
   .wwd-scroll {
-    height: 350vh;
+    height: 300vh;
   }
 
   .wwd-slide-word {
-    font-size: clamp(2rem, 10vw, 3.5rem);
-    letter-spacing: 0;
-    padding: 0 16px;
+    font-size: clamp(1.8rem, 12vw, 3.5rem);
+    letter-spacing: -1px;
   }
 }
