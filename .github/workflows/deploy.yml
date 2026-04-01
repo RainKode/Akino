@@ -1,0 +1,57 @@
+# ─── Auto Build & Deploy to Hostinger ───────────────────────────
+# Triggers:
+#   1. Push to main branch (code changes)
+#   2. Sanity webhook (new/updated blog post) via repository_dispatch
+#   3. Manual trigger from GitHub Actions UI
+#
+# Flow: generate-sitemap → vite build → prerender → FTP to Hostinger
+# ─────────────────────────────────────────────────────────────────
+
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [sanity-content-update]
+  workflow_dispatch:
+
+# Cancel any in-progress runs on the same branch
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Puppeteer needs these system libraries on Ubuntu
+      - name: Install Chromium dependencies
+        run: npx puppeteer browsers install chrome
+
+      - name: Build (sitemap + vite + prerender)
+        run: npm run build
+
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: ./dist/
+          server-dir: ./public_html/
+          dangerous-clean-slate: false
