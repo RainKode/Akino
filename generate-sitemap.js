@@ -21,6 +21,7 @@ const SITE_URL = 'https://akinostudio.com'
 const staticPages = [
   { url: '/',               changefreq: 'weekly',  priority: '1.0', lastmod: null },
   { url: '/blog',           changefreq: 'weekly',  priority: '0.8', lastmod: null },
+  { url: '/colour-grading', changefreq: 'monthly', priority: '0.7', lastmod: null },
   { url: '/privacy-policy', changefreq: 'yearly',  priority: '0.3', lastmod: null },
 ]
 
