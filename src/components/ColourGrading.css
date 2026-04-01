@@ -1,0 +1,614 @@
+/* ═══════════════════════════════════════════════════════════════
+   Colour Grading Page
+   ═══════════════════════════════════════════════════════════════ */
+
+.cg-page {
+  min-height: 100vh;
+  background: #000;
+  color: var(--dark);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.cg-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL-EXPAND HERO
+   ═══════════════════════════════════════════════════════════════ */
+
+.cg-expand-hero {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  min-height: 600px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* The video wrapper — width/height/radius driven by JS inline styles */
+.cg-expand-video-wrap {
+  position: relative;
+  overflow: hidden;
+  transition: width 0.05s linear, height 0.05s linear, border-radius 0.05s linear;
+  will-change: width, height, border-radius;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+}
+
+.cg-expand-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Sound toggle button — bottom-right corner of the video */
+.cg-sound-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.25s ease, transform 0.2s ease;
+  pointer-events: all;
+}
+
+.cg-sound-btn:hover {
+  background: rgba(0, 0, 0, 0.75);
+  transform: scale(1.08);
+}
+
+/* Scroll hint — below the video container, centered in the hero */
+.cg-expand-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SPLIT PUSH SECTION
+   ═══════════════════════════════════════════════════════════════ */
+
+.cg-split-section {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* Every page is absolutely stacked; CSS transform positions them */
+.cg-split-page {
+  position: absolute;
+  inset: 0;
+}
+
+.cg-split-half {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* ★ This is the key: CSS transition, not React/motion ★ */
+  transition: transform 1000ms cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+  overflow: hidden;
+}
+
+.cg-split-left  { left: 0; }
+.cg-split-right { left: 50%; }
+
+/* Text content inside a half */
+.cg-split-content {
+  padding: 60px 64px;
+  max-width: 520px;
+}
+
+.cg-split-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  transition-delay: 0.3s;
+}
+
+.cg-split-heading {
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition-delay: 0.38s;
+}
+
+.cg-split-body {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  line-height: 1.65;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  transition-delay: 0.48s;
+  margin-bottom: 40px;
+}
+
+.cg-split-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--secondary);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.45s ease, transform 0.45s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition-delay: 0.58s;
+}
+
+.cg-split-cta-btn:hover {
+  background: var(--secondary);
+  filter: brightness(1.15);
+  box-shadow: 0 8px 28px rgba(253, 88, 99, 0.35);
+}
+
+/* Reveal text when slide becomes active */
+.cg-split-content--active .cg-split-tag,
+.cg-split-content--active .cg-split-heading,
+.cg-split-content--active .cg-split-body,
+.cg-split-content--active .cg-split-cta-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Navigation dots */
+.cg-split-dots {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 20;
+}
+
+.cg-split-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+  padding: 0;
+}
+
+.cg-split-dot--active {
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: scale(1.3);
+}
+
+.cg-split-dot:hover:not(.cg-split-dot--active) {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Arrow nav buttons */
+.cg-split-arrow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  z-index: 20;
+  padding: 0;
+}
+
+.cg-split-arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.cg-split-arrow--up   { top: 20px; }
+.cg-split-arrow--down { bottom: 20px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   COVER & PUSH — shared
+   ═══════════════════════════════════════════════════════════════ */
+
+.cover-push-block {
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-push-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.cover-push-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CAPABILITIES — LOCKED FULL-SCREEN SLIDES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Outer wrapper — same viewport-filling pattern as .cg-split-section */
+.cg-cap-section {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* Each slide sits absolutely and moves via transform */
+.cg-cap-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1000ms cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+
+/* Inner content — two columns: big number on the left, text on the right */
+.cg-cap-slide-content {
+  display: flex;
+  align-items: center;
+  gap: clamp(32px, 6vw, 100px);
+  padding: 0 clamp(40px, 8vw, 120px);
+  max-width: 1280px;
+  width: 100%;
+}
+
+/* Number column */
+.cg-cap-slide-num-col {
+  flex: 0 0 auto;
+}
+
+.cg-cap-slide-number {
+  font-size: clamp(7rem, 16vw, 20rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  display: block;
+  /* Start off-left, hidden */
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.55s ease 0.18s, transform 0.55s ease 0.18s;
+}
+
+/* Text column */
+.cg-cap-slide-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.cg-cap-slide-tag {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
+}
+
+.cg-cap-slide-heading {
+  font-size: clamp(2.8rem, 6vw, 6.5rem);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  margin: 0 0 28px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease 0.38s, transform 0.55s ease 0.38s;
+}
+
+.cg-cap-slide-body {
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  line-height: 1.7;
+  max-width: 480px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease 0.5s, transform 0.4s ease 0.5s;
+}
+
+/* Active slide — reveal content */
+.cg-cap-slide--active .cg-cap-slide-number {
+  opacity: 1;
+  transform: translateX(0);
+}
+.cg-cap-slide--active .cg-cap-slide-tag,
+.cg-cap-slide--active .cg-cap-slide-body {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cg-cap-slide--active .cg-cap-slide-heading {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Navigation dots */
+.cg-cap-dots {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 20;
+}
+
+.cg-cap-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.cg-cap-dot--active {
+  background: #fff;
+  border-color: #fff;
+  transform: scale(1.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROCESS BLOCK (dark bg)
+   ═══════════════════════════════════════════════════════════════ */
+
+.cg-process-block {
+  padding: 120px 0;
+}
+
+.cg-process-block .cover-push-content {
+  background: var(--dark);
+}
+
+.cg-process-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.cg-tag-light.section-tag {
+  color: var(--primary);
+}
+
+.cg-heading-light {
+  color: var(--white);
+}
+
+.cg-process-steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.cg-step {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cg-step:last-child { border-bottom: none; }
+
+.cg-step-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+  padding-top: 4px;
+  text-transform: uppercase;
+}
+
+.cg-step-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.cg-step-desc {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CTA BAND
+   ═══════════════════════════════════════════════════════════════ */
+
+.cg-cta-band {
+  padding: 120px 0;
+  background: var(--background, #fbfbfe);
+}
+
+.cg-cta-inner {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 80px 72px;
+  text-align: center;
+  box-shadow: 0 4px 60px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.cg-cta-heading {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: var(--dark);
+  margin: 8px 0 40px;
+}
+
+.cg-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--secondary);
+  color: var(--white);
+  padding: 16px 34px;
+  border-radius: 100px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.cg-cta-btn:hover {
+  background: var(--secondary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(253, 88, 99, 0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1100px) {
+  .cg-container { padding: 0 40px; }
+  .cg-process-inner { grid-template-columns: 1fr; gap: 48px; }
+  .cg-split-content { padding: 48px 44px; }
+}
+
+@media (max-width: 768px) {
+  .cg-container { padding: 0 24px; }
+
+  /* Hero */
+  .cg-expand-hero { background: #000; }
+
+  /* Split section → on mobile only the text-side half fills full screen */
+  .cg-split-section { height: 100svh; min-height: auto; }
+
+  .cg-split-half {
+    width: 100%;
+    height: 100%;
+    left: 0 !important;
+    top: 0 !important;
+  }
+
+  /* Text side: on top (z-index 2). Non-text side: hidden */
+  .cg-split-page[data-textside="left"]  .cg-split-left  { z-index: 2; }
+  .cg-split-page[data-textside="right"] .cg-split-right { z-index: 2; }
+  .cg-split-page[data-textside="left"]  .cg-split-right { display: none; }
+  .cg-split-page[data-textside="right"] .cg-split-left  { display: none; }
+
+  .cg-split-content { padding: 28px 28px; max-width: 100%; }
+  .cg-split-heading { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+  .cg-split-body { font-size: 0.95rem; margin-bottom: 24px; }
+
+  .cg-split-dots { right: 12px; }
+
+  /* Capabilities slides — mobile: number becomes decorative bg; text fills the slide */
+  .cg-cap-section { height: 100svh; }
+
+  /* Pull the number out of flow so it doesn't eat vertical space */
+  .cg-cap-slide-num-col {
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+    pointer-events: none;
+  }
+  .cg-cap-slide-number {
+    font-size: clamp(8rem, 40vw, 14rem);
+    /* Keep the initial/active opacity from parent rules */
+  }
+
+  /* Let the text column fill all horizontal space */
+  .cg-cap-slide-content {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 32px;
+    gap: 0;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .cg-cap-slide-text { max-width: 100%; }
+  .cg-cap-slide-tag   { margin-bottom: 16px; }
+  .cg-cap-slide-heading {
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
+    margin-bottom: 20px;
+  }
+  .cg-cap-slide-body  { font-size: 0.95rem; max-width: 100%; }
+
+  .cg-process-block { padding: 80px 0; }
+  .cg-cta-band { padding: 80px 0; }
+  .cg-cta-inner { padding: 48px 32px; }
+  .cg-cta-heading { margin-bottom: 28px; }
+}
+
+@media (max-width: 480px) {
+  .cg-split-content { padding: 24px 20px; }
+  .cg-split-heading { font-size: 1.35rem; }
+}

@@ -14,6 +14,7 @@ import Footer from './components/Footer'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import Blog from './components/Blog'
 import BlogPost from './components/BlogPost'
+import ColourGrading from './components/ColourGrading'
 import './App.css'
 
 /* Detect Android — Lenis smooth-scroll sets overflow:hidden on <html>
@@ -47,6 +48,7 @@ function App() {
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogPost />} />
+      <Route path="/colour-grading" element={<ColourGrading />} />
     </Routes>
   )
 }

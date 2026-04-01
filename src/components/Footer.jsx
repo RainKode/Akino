@@ -96,6 +96,7 @@ const Footer = () => {
               <a href="#testimonials">Testimonials</a>
               <a href="#contact">Contact</a>
               <Link to="/blog">Blog</Link>
+              <Link to="/colour-grading">Colour Grading</Link>
             </div>
             <div className="footer-col">
               <h4>Social</h4>
