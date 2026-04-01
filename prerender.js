@@ -23,7 +23,7 @@ const DIST_DIR = join(__dirname, 'dist')
 const PORT = 4173
 
 const sanity = createClient({
-  projectId: '15a0z2p7',
+  projectId: 'de8oo2go',
   dataset: 'production',
   apiVersion: '2026-02-26',
   useCdn: false,

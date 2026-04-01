@@ -42,7 +42,7 @@ const sanityRefToUrl = (ref) => {
   const format = parts[parts.length - 1]
   const dimensions = parts[parts.length - 2]
   const id = parts.slice(1, parts.length - 2).join('-')
-  return `https://cdn.sanity.io/images/15a0z2p7/production/${id}-${dimensions}.${format}`
+  return `https://cdn.sanity.io/images/de8oo2go/production/${id}-${dimensions}.${format}`
 }
 
 // Portable Text components for rendering Sanity rich text

@@ -13,7 +13,7 @@
 import { createClient } from '@sanity/client'
 
 const sanityClient = createClient({
-  projectId: '15a0z2p7',
+  projectId: 'de8oo2go',
   dataset: 'production',
   apiVersion: '2026-02-26',
   useCdn: false, // `false` to use the live API directly — avoids CDN hangs during SPA navigation

@@ -6,7 +6,7 @@ import {schemaTypes} from './schemas'
 export default defineConfig({
   name: 'akino-studio-blog',
   title: 'Akino Studio Blog',
-  projectId: '15a0z2p7',
+  projectId: 'de8oo2go',
   dataset: 'production',
   plugins: [structureTool(), visionTool()],
   schema: {

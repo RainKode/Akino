@@ -2,8 +2,8 @@ import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
   api: {
-    projectId: '15a0z2p7',
+    projectId: 'de8oo2go',
     dataset: 'production',
   },
-  studioHost: 'akino-studio-blog',
+  studioHost: 'akinostudio',
 })

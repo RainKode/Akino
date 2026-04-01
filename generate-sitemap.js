@@ -10,7 +10,7 @@ import { createClient } from '@sanity/client'
 import { writeFileSync } from 'fs'
 
 const client = createClient({
-  projectId: '15a0z2p7',
+  projectId: 'de8oo2go',
   dataset: 'production',
   apiVersion: '2026-02-26',
   useCdn: false,
