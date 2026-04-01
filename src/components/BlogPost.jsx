@@ -17,6 +17,7 @@ const SANITY_POST_QUERY = (slug) => `*[_type == "post" && slug.current == "${slu
   author,
   readTime,
   "date": scheduledPublishDate,
+  "updatedAt": _updatedAt,
   rawHtml,
   body,
   seoTitle,
@@ -202,6 +203,8 @@ const BlogPost = () => {
     const script = document.createElement('script')
     script.type = 'application/ld+json'
     script.id = 'blog-post-schema'
+    const authorName = post.author || 'Akino Studio'
+    const isOrgAuthor = authorName === 'Akino Studio'
     script.textContent = JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
@@ -209,10 +212,11 @@ const BlogPost = () => {
       description: metaDescription,
       image: post.cover,
       datePublished: dateStr,
+      ...(post.updatedAt && { dateModified: post.updatedAt }),
       author: {
-        '@type': 'Organization',
-        name: post.author || 'Akino Studio',
-        url: 'https://akinostudio.com',
+        '@type': isOrgAuthor ? 'Organization' : 'Person',
+        name: authorName,
+        ...(isOrgAuthor && { url: 'https://akinostudio.com' }),
       },
       publisher: {
         '@type': 'Organization',

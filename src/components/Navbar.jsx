@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import './Navbar.css'
 
 const navItems = [
   { label: 'Home', target: 'hero' },
-  { label: 'Work', target: 'featured-work' },
   { label: 'Case Studies', target: 'projects' },
   { label: 'Process', target: 'process' },
   { label: 'Testimonials', target: 'testimonials' },
   { label: 'Contact', target: 'contact' },
+  { label: 'Blog', route: '/blog' },
 ]
 
 const previewCards = [
@@ -20,6 +21,9 @@ const previewCards = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isHomePage = location.pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -39,17 +43,41 @@ const Navbar = () => {
 
   const scrollTo = useCallback((id) => {
     setDrawerOpen(false)
+    if (!isHomePage) {
+      navigate('/')
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+      }, 500)
+      return
+    }
     setTimeout(() => {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     }, 350)
-  }, [])
+  }, [isHomePage, navigate])
+
+  const handleLogoClick = useCallback(() => {
+    if (isHomePage) {
+      scrollTo('hero')
+    } else {
+      navigate('/')
+    }
+  }, [isHomePage, scrollTo, navigate])
+
+  const handleNavItem = useCallback((item) => {
+    setDrawerOpen(false)
+    if (item.route) {
+      navigate(item.route)
+    } else {
+      scrollTo(item.target)
+    }
+  }, [scrollTo, navigate])
 
   return (
     <>
       {/* ── Fixed header bar ── */}
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="navbar-inner">
-          <div className="navbar-logo" onClick={() => scrollTo('hero')} role="button" tabIndex={0} aria-label="Go to homepage">
+          <div className="navbar-logo" onClick={handleLogoClick} role="button" tabIndex={0} aria-label="Go to homepage">
             <img src="/logo.svg" alt="Akino Studio" className="navbar-logo-img" />
           </div>
           <button
@@ -113,7 +141,7 @@ const Navbar = () => {
                       <li key={item.target}>
                         <button
                           className="drawer-nav-link"
-                          onClick={() => scrollTo(item.target)}
+                          onClick={() => handleNavItem(item)}
                         >
                           {item.label}
                         </button>

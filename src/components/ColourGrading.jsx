@@ -617,12 +617,39 @@ const ColourGrading = () => {
     return () => { document.body.style.overflow = '' }
   }, [phase])
 
-  /* ── Page title ── */
+  /* ── Page title + canonical ── */
   useEffect(() => {
     window.scrollTo(0, 0)
     document.title = 'Colour Grading | Akino Studio — Video Production Agency'
+    const canonical = document.getElementById('canonical-tag')
+    if (canonical) canonical.setAttribute('href', 'https://akinostudio.com/colour-grading')
+
+    /* ── Structured Data — Service ── */
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.id = 'colour-grading-schema'
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'Professional Colour Grading',
+      description: 'Professional colour grading service for brand films, social media videos, and campaign content. Every element masked and sculpted — skin tones, skies, shadows — for a cinematic result.',
+      provider: {
+        '@type': 'Organization',
+        name: 'Akino Studio',
+        url: 'https://akinostudio.com',
+      },
+      serviceType: 'Colour Grading',
+      url: 'https://akinostudio.com/colour-grading',
+      areaServed: 'Worldwide',
+      category: 'Video Production',
+    })
+    document.head.appendChild(script)
+
     return () => {
       document.title = 'Akino Studio — Video Production Agency | Brand Films, Social Shorts & Campaign Videos'
+      if (canonical) canonical.setAttribute('href', 'https://akinostudio.com')
+      const el = document.getElementById('colour-grading-schema')
+      if (el) el.remove()
     }
   }, [])
 

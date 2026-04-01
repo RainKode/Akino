@@ -89,12 +89,11 @@ const Footer = () => {
           <div className="footer-links">
             <div className="footer-col">
               <h4>Sitemap</h4>
-              <a href="#hero">Home</a>
-              <a href="#featured-work">Work</a>
-              <a href="#projects">Case Studies</a>
-              <a href="#process">Process</a>
-              <a href="#testimonials">Testimonials</a>
-              <a href="#contact">Contact</a>
+              <Link to="/#hero">Home</Link>
+              <Link to="/#projects">Case Studies</Link>
+              <Link to="/#process">Process</Link>
+              <Link to="/#testimonials">Testimonials</Link>
+              <Link to="/#contact">Contact</Link>
               <Link to="/blog">Blog</Link>
               <Link to="/colour-grading">Colour Grading</Link>
             </div>

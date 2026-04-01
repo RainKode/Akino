@@ -49,6 +49,25 @@ const Blog = () => {
     const canonical = document.getElementById('canonical-tag')
     if (canonical) canonical.setAttribute('href', 'https://akinostudio.com/blog')
 
+    /* ── Structured Data — Blog ── */
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.id = 'blog-listing-schema'
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      name: 'Akino Studio Blog',
+      description: 'Video production insights, tips, and industry news from Akino Studio.',
+      url: 'https://akinostudio.com/blog',
+      publisher: {
+        '@type': 'Organization',
+        name: 'Akino Studio',
+        url: 'https://akinostudio.com',
+        logo: 'https://akinostudio.com/logo.svg',
+      },
+    })
+    document.head.appendChild(script)
+
     sanityClient
       .fetch(SANITY_POSTS_QUERY)
       .then((data) => {
@@ -67,6 +86,8 @@ const Blog = () => {
       document.title = 'Akino Studio — Video Production Agency | Brand Films, Social Shorts & Campaign Videos'
       const canonical = document.getElementById('canonical-tag')
       if (canonical) canonical.setAttribute('href', 'https://akinostudio.com/')
+      const el = document.getElementById('blog-listing-schema')
+      if (el) el.remove()
     }
   }, [])
 

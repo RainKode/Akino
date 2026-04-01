@@ -2,7 +2,35 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://akinostudio.com/sitemap.xml
+# ── AI Search bots — explicitly allowed for citation ──────────
+# OpenAI (ChatGPT)
+User-agent: GPTBot
+Allow: /
 
-# Crawl-delay (optional, respected by some bots)
-Crawl-delay: 1
+User-agent: ChatGPT-User
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google (Gemini + AI Overviews)
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft (Copilot via Bing)
+User-agent: Bingbot
+Allow: /
+
+# ── Block Common Crawl (training data harvester, not a search bot) ──
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://akinostudio.com/sitemap.xml

@@ -161,7 +161,7 @@ const Process = () => {
 
   /* Mobile view — all phases with scroll-triggered animations */
   const renderMobile = () => (
-    <section className="process process--mobile" id="process">
+    <section className="process process--mobile" id="process-mobile">
       <div className="process-mobile-header">
         <span className="section-tag">&lt; Our Process &gt;</span>
         <h2 className="process-mobile-title">How we work</h2>
